@@ -1,10 +1,6 @@
-import { SupabaseClient } from "@supabase/supabase-js";
 import supabase from "../supabase/server/supabase";
 import { cookies } from "next/headers";
-export default async function createSession(
-  supabase: SupabaseClient,
-  userId: string,
-) {
+export default async function createSession(userId: string) {
   const token = crypto.randomUUID();
   try {
     const { data } = await supabase

@@ -1,6 +1,6 @@
 import supabase from "@/app/lib/supabase/server/supabase";
 import { NextRequest, NextResponse } from "next/server";
-
+//implement user id check before marking complete, rn allows any1 to mark anybodies todo
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const { todoId, todoStatus } = body;

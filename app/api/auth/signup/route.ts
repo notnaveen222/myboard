@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       console.log("Failed Inserting user!");
       throw new Error("Failed to insert user error thrown.");
     }
-    const session = await createSession(supabase, data[0].user_id);
+    const session = await createSession(data[0].user_id);
     if (!session) {
       console.log("Failed to create session token");
       return NextResponse.json(
