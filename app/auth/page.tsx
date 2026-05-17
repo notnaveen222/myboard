@@ -2,20 +2,28 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 export default function auth() {
   const [name, setName] = useState<String>("");
   const [email, setEmail] = useState<String>("");
   const [password, setPassword] = useState<String>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleSignUp = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post("/api/auth/signup", {
         name: name,
         email: email,
         password: password,
       });
-      console.log(response.data);
+      setIsLoading(false);
+      if (response.data.success) {
+        router.push("/board");
+      }
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -51,7 +59,7 @@ export default function auth() {
           handleSignUp();
         }}
       >
-        Submit
+        {isLoading ? "Loading" : "Submit"}
       </button>
     </div>
   );

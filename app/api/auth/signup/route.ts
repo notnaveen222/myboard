@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
-    const response = NextResponse.json({
+    const response: NextResponse = NextResponse.json({
       message: "success",
       success: true,
     });
